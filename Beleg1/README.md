@@ -1,6 +1,6 @@
 # COMPILE
 
-´g++ <cppfile> -lb15fdrv -o <outfile>´
+´g++ cppfile.cpp -lb15fdrv -o outfile´
 
 # analogRead.cpp
 
@@ -10,7 +10,7 @@ Mit ´$ ./analogRead > messung.txt´ werden die messungen in eine Textdatei gesc
 Nach Löschung des headers kann die Textdatei in LibreOffice Calc in einen Graphen umgewandelt werden.
 
 Erkennbar ist der Spannungsabfall nach Anlegen der Versorgunsspannung. 
-(graph-spannungsabfall.png)[graph]
+![graph](graph-spannungsabfall.png)
 
 # knight-rida.cpp
 
