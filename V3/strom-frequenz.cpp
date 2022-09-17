@@ -1,14 +1,9 @@
-
 #include <iostream>
 #include <b15f/b15f.h>
-
 #include <string>
-
 using namespace std;
 
-
-int fd;
-
+// aus serialctl.cpp von HWP1
 int open_port(void)
 {
   int fd; /* File descriptor for the port */
@@ -36,7 +31,7 @@ int open_port(void)
   return 0;
 }
 
-void writeAndMeasure(int f, B15F& drv) {
+void writeAndMeasure(int f, B15F& drv, int fd) {
 	string str = string(":w21=5.\r\n:w23=") + to_string(f) + string("00,0.\r\n");
 	char write_buffer[32];
 	strcpy(write_buffer, str.c_str());
@@ -47,14 +42,10 @@ void writeAndMeasure(int f, B15F& drv) {
 	cout << f << "," << (int) sum1 / 200 << endl;
 }
 
-
-
 int main(){
 	B15F& drv = B15F::getInstance();
+	int fd = open_port();
 	
-	fd = open_port();
-	
-	for (double frequenz = 1000; frequenz < 1000000.0; frequenz *= 1.15) {
-		writeAndMeasure((int) frequenz, drv);
-	}
+	for (double frequenz = 1000; frequenz < 1000000.0; frequenz *= 1.15)
+		writeAndMeasure((int) frequenz, drv, fd);
 }
